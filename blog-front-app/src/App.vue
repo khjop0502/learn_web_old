@@ -1,54 +1,70 @@
-<script setup lang="ts">
-import { onMounted } from 'vue'
-import axios from 'axios'
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-
-onMounted(async () => {
-  const response = await axios.get('http://localhost:8000/api/test/')
-  console.log(response.data)
-})
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div>
+    <form @submit.prevent="submitForm">
+      <label for="email">Email:</label>
+      <input id="email" v-model="user.email" type="email" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+      <label for="username">Username:</label>
+      <input id="username" v-model="user.username" type="text" />
 
-  <main>
-    <TheWelcome />
-  </main>
+      <label for="password">Password:</label>
+      <input id="password" v-model="user.password" type="password" />
+
+      <input type="submit" value="Submit">
+
+      <!-- Message -->
+      <div v-if="message">
+        {{ message }}
+      </div>
+    </form>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script setup lang="ts">
+import { ref } from 'vue'
+import axios from 'axios'
+
+interface User {
+  email: string;
+  username: string;
+  password: string;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+interface AxiosError {
+  message: string;
+  response?: {
+    status: number;
+    headers: any;
+    data: any;
+  };
+  request?: any;
+  config: any;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+const users = ref<User[]>([]);
+const user = ref<User>({ email: '', username: '', password: '' });
+const message = ref('');
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+const submitForm = async () => {
+  message.value = '';
+  try {
+    const response = await axios.post('http://localhost:8000/api/users/', user.value)
+    message.value = 'User created successfully!';
+  } catch (error: any) {
+    if (error.response) {
+      switch (error.response.status) {
+        case 400:
+          message.value = '잘못된 요청입니다. 입력 내용을 확인해주세요.';
+          break;
+        case 404:
+          message.value = '리소스를 찾을 수 없습니다.';
+          break;
+        default:
+          message.value = '오류가 발생했습니다.';
+      }
+    } else {
+      message.value = '서버가 응답하지 않았습니다.';
+    }
   }
 }
-</style>
+</script>
