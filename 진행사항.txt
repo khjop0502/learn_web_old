@@ -1,0 +1,9 @@
+장고 프로젝트 tmpblog 생성
+뷰 프로젝트 blogmain 생성 cd blogmain 후 npm install 실행
+장고 앱 post_manager, category_manager, user_manager, test_viewer 생성
+스태틱 폴더 생성후 설정에 경로 저장
+마이그래이션 진행
+core 설정
+
+
+npm install axios

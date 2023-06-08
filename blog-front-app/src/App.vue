@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import axios from 'axios'
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+
+onMounted(async () => {
+  const response = await axios.get('http://localhost:8000/api/test/')
+  console.log(response.data)
+})
 </script>
 
 <template>

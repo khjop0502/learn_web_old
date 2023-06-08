@@ -1,5 +1,5 @@
 {
-  "name": "blog_main",
+  "name": "blog-front-app",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "vue": "^3.3.2"
   },
   "devDependencies": {

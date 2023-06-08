@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "test_viewer",
     "user_manager",
     "corsheaders",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
