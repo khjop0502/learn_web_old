@@ -2,19 +2,18 @@
   <div>
     <form @submit.prevent="submitForm">
       <label for="email">Email:</label>
-      <input id="email" v-model="user.email" type="email" />
+      <input id="email" v-model="user.email" type="email" autocomplete="username" />
 
       <label for="username">Username:</label>
       <input id="username" v-model="user.username" type="text" />
 
       <label for="password">Password:</label>
-      <input id="password" v-model="user.password" type="password" />
+      <input id="password" v-model="user.password" type="password" autocomplete="current-password" />
 
       <input type="submit" value="Submit">
 
-      <!-- Message -->
-      <div v-if="message">
-        {{ message }}
+      <div v-if="signupMessage">
+        {{ signupMessage }}
       </div>
     </form>
   </div>
@@ -43,27 +42,27 @@ interface AxiosError {
 
 const users = ref<User[]>([]);
 const user = ref<User>({ email: '', username: '', password: '' });
-const message = ref('');
+const signupMessage = ref('');
 
 const submitForm = async () => {
-  message.value = '';
+  signupMessage.value = '';
   try {
     const response = await axios.post('http://localhost:8000/api/users/', user.value)
-    message.value = 'User created successfully!';
+    signupMessage.value = 'User created successfully!';
   } catch (error: any) {
     if (error.response) {
       switch (error.response.status) {
         case 400:
-          message.value = '잘못된 요청입니다. 입력 내용을 확인해주세요.';
+          signupMessage.value = '잘못된 요청입니다. 입력 내용을 확인해주세요.';
           break;
         case 404:
-          message.value = '리소스를 찾을 수 없습니다.';
+          signupMessage.value = '리소스를 찾을 수 없습니다.';
           break;
         default:
-          message.value = '오류가 발생했습니다.';
+          signupMessage.value = '오류가 발생했습니다.';
       }
     } else {
-      message.value = '서버가 응답하지 않았습니다.';
+      signupMessage.value = '서버가 응답하지 않았습니다.';
     }
   }
 }
