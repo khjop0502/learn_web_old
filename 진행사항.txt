@@ -1,9 +1,17 @@
+2023-06-08
 장고 프로젝트 tmpblog 생성
 뷰 프로젝트 blogmain 생성 cd blogmain 후 npm install 실행
 장고 앱 post_manager, category_manager, user_manager, test_viewer 생성
 스태틱 폴더 생성후 설정에 경로 저장
 마이그래이션 진행
 core 설정
-
-
-npm install axios
+뷰ts 통신 설정
+    npm install axios
+Django Rest Framework
+    pip install djangorestframework
+    설정 파일 수정
+urls 각 앱에 넣고 그거 프로젝트에서 끌고오게 변경
+카테고리 유저 포스트 앱 생성 후 모델 작성 마이그래이션 진행
+포스트 rest 테스트
+유저 생성 테스트
+2023-06-09

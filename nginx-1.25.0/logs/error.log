@@ -1,0 +1,5 @@
+2023/06/09 10:55:03 [error] 5100#5708: *1 CreateFile() "C:\Users\tmp\Documents\workspace\nginx-1.25.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/06/09 11:00:27 [emerg] 11176#25784: host not found in "somename:8080" of the "listen" directive in C:\Users\tmp\Documents\workspace\nginx-1.25.0/conf/nginx.conf:86
+2023/06/09 11:02:16 [notice] 23736#21332: signal process started
+2023/06/09 11:04:11 [error] 5796#29968: *5 CreateFile() "C:\Users\tmp\Documents\workspace\nginx-1.25.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: alias, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:8000", referrer: "http://127.0.0.1:8000/"
+2023/06/09 11:05:07 [notice] 31344#7632: signal process started
